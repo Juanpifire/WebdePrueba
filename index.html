@@ -22,14 +22,6 @@
             color: white;
             z-index: 1000;
         }
-        /* CSS para animación del GIF */
-        @keyframes gif-animation {
-            0% { opacity: 1; }
-            100% { opacity: 1; }
-        }
-        .animated-gif {
-            animation: gif-animation 1s steps(1, end) infinite;
-        }
     </style>
 </head>
 <body style="margin: 0; overflow: hidden;">
@@ -38,8 +30,8 @@
     <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
         <!-- Marker -->
         <a-marker type="pattern" url="my-marker.patt" emitevents="true">
-            <!-- Mostrar un GIF animado con CSS -->
-            <a-plane src="#animated-gif" position="0 0.5 0" rotation="-90 0 0" width="1" height="1"></a-plane>
+            <!-- Mostrar un GIF directamente -->
+            <a-plane position="0 0.5 0" rotation="-90 0 0" width="1" height="1" material="src: url(image.gif); transparent: true;"></a-plane>
         </a-marker>
         <a-entity camera></a-entity>
     </a-scene>
@@ -58,6 +50,5 @@
             document.getElementById('infoMessage').innerText = "Marker lost!";
         });
     </script>
-    <img id="animated-gif" src="image.gif" class="animated-gif" style="display: none;">
 </body>
 </html>
