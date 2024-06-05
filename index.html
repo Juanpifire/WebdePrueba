@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <!-- A-Frame version 1.0.4 -->
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <!-- AR.js with marker + location support -->
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar-nft.js"></script>
+<html lang="en">
+  <head>
+    <title>AR.js Marker Example</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
     <style>
       body { margin: 0; overflow: hidden; }
       #loadingMessage {
@@ -24,17 +23,17 @@
         z-index: 1000;
       }
     </style>
-</head>
-<body style="margin : 0px; overflow: hidden;">
+  </head>
+  <body style="margin: 0; overflow: hidden;">
     <div id="loadingMessage">⌛ Loading, please wait...</div>
     <div id="infoMessage"></div>
     <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
-        <!-- Marker NFT -->
-        <a-nft type="nft" url="d" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5" emitevents="true">
-            <!-- Mostrar una imagen JPG o GIF -->
-            <a-image src="my-image.jpg" position="0 0 0" rotation="-90 0 0" width="1" height="1"></a-image>
-        </a-nft>
-        <a-entity camera></a-entity>
+      <!-- Marker -->
+      <a-marker type="pattern" url="my-marker.patt" emitevents="true">
+        <!-- Mostrar una imagen JPG o GIF -->
+        <a-image src="my-image.jpg" position="0 0 0" rotation="-90 0 0" width="1" height="1"></a-image>
+      </a-marker>
+      <a-entity camera></a-entity>
     </a-scene>
     <script>
       // Hide the loading message once the scene is loaded
@@ -43,7 +42,7 @@
       });
 
       // Add event listeners to the marker
-      const marker = document.querySelector('a-nft');
+      const marker = document.querySelector('a-marker');
       marker.addEventListener('markerFound', () => {
         document.getElementById('infoMessage').innerText = "Marker found!";
       });
@@ -51,5 +50,5 @@
         document.getElementById('infoMessage').innerText = "Marker lost!";
       });
     </script>
-</body>
+  </body>
 </html>
