@@ -4,9 +4,6 @@
     <title>AR.js Marker with GIF Example</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.rawgit.com/mrdoob/three.js/r128/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js"></script>
     <style>
         body { margin: 0; overflow: hidden; }
         #loadingMessage {
@@ -33,10 +30,12 @@
     <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
         <!-- Marker -->
         <a-marker type="pattern" url="my-marker.patt" emitevents="true">
-            <a-entity id="gifPlane" position="0 0.5 0" rotation="-90 0 0" width="1" height="1"></a-entity>
+            <!-- Mostrar un GIF -->
+            <a-plane src="#animatedGif" position="0 0.5 0" rotation="-90 0 0" width="1" height="1"></a-plane>
         </a-marker>
         <a-entity camera></a-entity>
     </a-scene>
+    <img id="animatedGif" src="image.gif" style="display: none;">
     <script>
         // Hide the loading message once the scene is loaded
         document.querySelector('a-scene').addEventListener('loaded', () => {
@@ -51,18 +50,6 @@
         marker.addEventListener('markerLost', () => {
             document.getElementById('infoMessage').innerText = "Marker lost!";
         });
-
-        // Load and play the GIF
-        marker.addEventListener('markerFound', () => {
-            const plane = document.getElementById('gifPlane');
-
-            const textureLoader = new THREE.TextureLoader();
-            textureLoader.load('image.gif', (texture) => {
-                const material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
-                plane.setObject3D('mesh', new THREE.Mesh(new THREE.PlaneGeometry(1, 1), material));
-            });
-        });
     </script>
 </body>
 </html>
-
