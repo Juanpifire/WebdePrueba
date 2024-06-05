@@ -30,10 +30,9 @@
     <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
         <!-- Marker -->
         <a-marker type="pattern" url="my-marker.patt" emitevents="true">
-            <!-- Mostrar un efecto de escaneo más llamativo -->
-            <a-entity id="scanEffect" geometry="primitive: plane; width: 1; height: 0.05" material="color: red; opacity: 0.8" position="0 0.5 0" rotation="-90 0 0">
-                <a-animation attribute="position" from="0 0.5 0" to="0 -0.5 0" dur="1000" direction="alternate" repeat="indefinite"></a-animation>
-                <a-animation attribute="material.opacity" from="0.8" to="0.2" dur="1000" direction="alternate" repeat="indefinite"></a-animation>
+            <!-- Mostrar un efecto de escaneo de borde brillante -->
+            <a-entity id="scanEffect" geometry="primitive: ring; radius-inner: 0.4; radius-outer: 0.5" material="color: yellow; shader: flat; opacity: 0.8" position="0 0 0.1" rotation="-90 0 0">
+                <a-animation attribute="material.opacity" from="0.8" to="0.1" dur="1000" direction="alternate" repeat="indefinite"></a-animation>
             </a-entity>
             <!-- Mostrar el video -->
             <a-video id="video" src="#myVideo" position="0 0.5 0" rotation="-90 0 0" width="1" height="1" autoplay="false" loop="true" visible="false"></a-video>
