@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Edu </title>
+<head>
+    <title>AR.js Marker with Effects Example</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
     <style>
@@ -23,15 +23,19 @@
         z-index: 1000;
       }
     </style>
-  </head>
-  <body style="margin: 0; overflow: hidden;">
-    <div id="loadingMessage">⌛ Loading, please wait...</div>
+</head>
+<body style="margin: 0; overflow: hidden;">
+    <div id="loadingMessage">⌛ Espera...</div>
     <div id="infoMessage"></div>
     <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
       <!-- Marker -->
       <a-marker type="pattern" url="my-marker.patt" emitevents="true">
-        <!-- Mostrar una imagen JPG o GIF -->
-        <a-image src="my-image.jpg" position="0 0 0" rotation="-90 0 0" width="1" height="1"></a-image>
+        <!-- Mostrar un GIF con efectos visuales -->
+        <a-entity position="0 0 0">
+          <a-plane src="my-image.gif" position="0 0.5 0" rotation="-90 0 0" width="1" height="1" material="shader: gif"></a-plane>
+          <a-animation attribute="scale" to="1.2 1.2 1.2" dur="1000" direction="alternate" repeat="indefinite"></a-animation>
+          <a-animation attribute="rotation" to="0 360 0" dur="5000" repeat="indefinite"></a-animation>
+        </a-entity>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
@@ -50,5 +54,7 @@
         document.getElementById('infoMessage').innerText = "Marker lost!";
       });
     </script>
-  </body>
+    <!-- Script para soporte de material GIF -->
+    <script src="https://unpkg.com/aframe-gif-shader@0.0.2/dist/aframe-gif-shader.min.js"></script>
+</body>
 </html>
