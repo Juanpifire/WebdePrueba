@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> Maestro </title>
+    <title>AR.js Image Example</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
     <style>
@@ -14,12 +14,21 @@
         color: white;
         z-index: 1000;
       }
+      #infoMessage {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        color: white;
+        z-index: 1000;
+      }
     </style>
   </head>
   <body>
-    <div id="loadingMessage">⌛ Espere por favor...</div>
+    <div id="loadingMessage">⌛ Loading, please wait...</div>
+    <div id="infoMessage"></div>
     <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;' vr-mode-ui="enabled: false">
-      <a-marker type="pattern" url="esfm.patt">
+      <a-marker type="pattern" url="esfm.patt" emitevents="true">
         <a-image src="Program.jpg" position="0 0 0" rotation="-90 0 0" width="1" height="1">
           <a-animation attribute="scale" to="1.2 1.2 1.2" dur="1000" direction="alternate" repeat="indefinite"></a-animation>
           <a-animation attribute="material.opacity" to="0.5" dur="2000" direction="alternate" repeat="indefinite"></a-animation>
@@ -31,6 +40,15 @@
       // Hide the loading message once the scene is loaded
       document.querySelector('a-scene').addEventListener('loaded', () => {
         document.getElementById('loadingMessage').style.display = 'none';
+      });
+
+      // Add event listeners to the marker
+      const marker = document.querySelector('a-marker');
+      marker.addEventListener('markerFound', () => {
+        document.getElementById('infoMessage').innerText = "Marker found!";
+      });
+      marker.addEventListener('markerLost', () => {
+        document.getElementById('infoMessage').innerText = "Marker lost!";
       });
     </script>
   </body>
