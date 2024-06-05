@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>AR.js Marker with GIF Example</title>
+    <title>AR.js Marker with Video Example</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
     <style>
@@ -30,12 +30,12 @@
     <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
         <!-- Marker -->
         <a-marker type="pattern" url="my-marker.patt" emitevents="true">
-            <!-- Mostrar un GIF -->
-            <a-plane src="#animatedGif" position="0 0.5 0" rotation="-90 0 0" width="1" height="1"></a-plane>
+            <!-- Mostrar un video -->
+            <a-video src="#myVideo" position="0 0.5 0" rotation="-90 0 0" width="1" height="1" autoplay loop></a-video>
         </a-marker>
         <a-entity camera></a-entity>
     </a-scene>
-    <img id="animatedGif" src="image.gif" style="display: none;">
+    <video id="myVideo" src="my-video.mp4" style="display: none;" loop></video>
     <script>
         // Hide the loading message once the scene is loaded
         document.querySelector('a-scene').addEventListener('loaded', () => {
@@ -46,9 +46,11 @@
         const marker = document.querySelector('a-marker');
         marker.addEventListener('markerFound', () => {
             document.getElementById('infoMessage').innerText = "Marker found!";
+            document.getElementById('myVideo').play();
         });
         marker.addEventListener('markerLost', () => {
             document.getElementById('infoMessage').innerText = "Marker lost!";
+            document.getElementById('myVideo').pause();
         });
     </script>
 </body>
