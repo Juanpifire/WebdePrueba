@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>AR.js Marker with Video and Gradient Scan Effect Example</title>
+    <title>DIA DEL MAESTRO</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
     <style>
@@ -22,7 +22,7 @@
             color: white;
             z-index: 1000;
         }
-        /* Degradado de azul */
+        /* Efecto de degradado para el escaneo */
         .gradient {
             background: linear-gradient(to right, #0000FF, #00FFFF);
             -webkit-background-clip: text;
@@ -36,10 +36,10 @@
     <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
         <!-- Marker -->
         <a-marker type="pattern" url="my-marker.patt" emitevents="true">
-            <!-- Mostrar un efecto de escaneo en degradado de azul -->
-            <a-entity id="scanEffect" geometry="primitive: ring; radius-inner: 0.4; radius-outer: 0.5" position="0 0 0.1" rotation="-90 0 0">
-                <a-animation attribute="material.opacity" from="0.8" to="0.1" dur="1000" direction="alternate" repeat="indefinite"></a-animation>
-                <a-plane position="0 0 0.01" width="1" height="0.05" material="shader: flat; side: double; src: #gradient"></a-plane>
+            <!-- Mostrar un efecto de escaneo elegante -->
+            <a-entity id="scanEffect" geometry="primitive: plane; width: 1; height: 0.1" material="color: #00f; opacity: 0.7" position="0 0.5 0.1" rotation="-90 0 0">
+                <a-animation attribute="position" from="0 0.5 0.1" to="0 -0.5 0.1" dur="1000" repeat="indefinite"></a-animation>
+                <a-animation attribute="material.opacity" from="0.7" to="0.3" dur="1000" direction="alternate" repeat="indefinite"></a-animation>
             </a-entity>
             <!-- Mostrar el video -->
             <a-video id="video" src="#myVideo" position="0 0.5 0" rotation="-90 0 0" width="1" height="1" autoplay="false" loop="true" visible="false"></a-video>
