@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>AR.js Image Example</title>
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
-    <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
-    <script src="https://unpkg.com/aframe-environment-component@1.0.0/dist/aframe-environment-component.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.2.0/dist/aframe-extras.min.js"></script>
+    <title>AR.js NFT Example</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar-nft.js"></script>
     <style>
       body { margin: 0; overflow: hidden; }
       #loadingMessage {
@@ -31,20 +28,17 @@
     <div id="loadingMessage">⌛ Loading, please wait...</div>
     <div id="infoMessage"></div>
     <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;' vr-mode-ui="enabled: false">
-      <!-- Environment -->
-      <a-entity environment="preset: forest"></a-entity>
-      
       <!-- Light -->
       <a-light type="point" intensity="1" position="-10 20 30"></a-light>
       
       <!-- Camera -->
       <a-entity camera></a-entity>
 
-      <!-- Marker -->
-      <a-marker preset="custom" type="pattern" url="my-marker.patt" emitevents="true">
-        <!-- Mostrar una imagen JPG -->
+      <!-- Marker NFT -->
+      <a-nft type="nft" url="d" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5" emitevents="true">
+        <!-- Mostrar una imagen JPG o GIF -->
         <a-image src="my-image.jpg" position="0 0 0" rotation="-90 0 0" width="1" height="1"></a-image>
-      </a-marker>
+      </a-nft>
     </a-scene>
     <script>
       // Hide the loading message once the scene is loaded
@@ -53,7 +47,7 @@
       });
 
       // Add event listeners to the marker
-      const marker = document.querySelector('a-marker');
+      const marker = document.querySelector('a-nft');
       marker.addEventListener('markerFound', () => {
         document.getElementById('infoMessage').innerText = "Marker found!";
       });
@@ -63,3 +57,4 @@
     </script>
   </body>
 </html>
+
