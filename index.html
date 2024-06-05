@@ -4,7 +4,7 @@
     <title>AR.js Marker with GIF Example</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
-    <script src="https://unpkg.com/aframe-gif-component@0.1.0/dist/aframe-gif-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-animated-gif-component@0.0.1/dist/aframe-animated-gif-component.min.js"></script>
     <style>
         body { margin: 0; overflow: hidden; }
         #loadingMessage {
@@ -32,7 +32,7 @@
         <!-- Marker -->
         <a-marker type="pattern" url="my-marker.patt" emitevents="true">
             <!-- Mostrar un GIF -->
-            <a-plane gif="src: url(image.gif)" position="0 0.5 0" rotation="-90 0 0" width="1" height="1"></a-plane>
+            <a-plane position="0 0.5 0" rotation="-90 0 0" width="1" height="1" animated-gif="src: image.gif;"></a-plane>
         </a-marker>
         <a-entity camera></a-entity>
     </a-scene>
